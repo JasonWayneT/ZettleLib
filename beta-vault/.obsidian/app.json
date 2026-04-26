@@ -1,0 +1,11 @@
+{
+  "userIgnoreFilters": [
+    "80 System/",
+    "docs/",
+    "vault-scaffold/",
+    "README.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md"
+  ]
+}

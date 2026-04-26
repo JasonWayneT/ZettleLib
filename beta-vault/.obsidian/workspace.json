@@ -1,0 +1,226 @@
+{
+  "main": {
+    "id": "1725d0a8d49ef368",
+    "type": "split",
+    "children": [
+      {
+        "id": "6fdf60388ac4d9dd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a703e8b590208eee",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00 Inbox/The Morphological Box.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "The Morphological Box"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "486186290ce4a477",
+    "type": "split",
+    "children": [
+      {
+        "id": "6d4c474dc87eb2b5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7a1ad1cf0d6fc871",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e5483acc396a256e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d9e81e2eae34d1ad",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "53a75cd8964e17f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "1fc060c68380d622",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "69434d5c0fb3a52a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "00 Inbox/The Morphological Box.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for The Morphological Box"
+            }
+          },
+          {
+            "id": "b44a7b6739465813",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "00 Inbox/The Morphological Box.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from The Morphological Box"
+            }
+          },
+          {
+            "id": "a61f98c9ed27e8b2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "d237ac6b5d81eb8e",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "839e1f578692faf6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "00 Inbox/The Morphological Box.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of The Morphological Box"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "a703e8b590208eee",
+  "lastOpenFiles": [
+    "t.ps1",
+    "test_switch.ps1",
+    "test_bisect2.ps1",
+    "test_bisect.ps1",
+    "check_syntax.ps1",
+    "zettle.ps1",
+    "Pasted image 20260424173141.png",
+    "00 Inbox/Welcome.md",
+    "00 Inbox/The Morphological Box.md",
+    "README.md",
+    "GEMINI.md",
+    "CLAUDE.md",
+    "80 System/Master Tag List.md",
+    "80 System/Decision Log.md",
+    "80 System/Archive",
+    "90 Maps/Indexes",
+    "90 Maps/Hubs",
+    "90 Maps",
+    "70 Projects",
+    "Welcome.md",
+    "80 System/Prompt Library/prompt-I-audit.md",
+    "80 System/Prompt Library/prompt-J-triage.md",
+    "80 System/Prompt Library/prompt-weekly-governance.md",
+    "80 System/Prompt Library/prompt-hub-pruning.md",
+    "80 System/Prompt Library/prompt-E-serendipity.md",
+    "80 System/Prompt Library/prompt-H-outline.md",
+    "80 System/Prompt Library/prompt-G-dialectic.md",
+    "80 System/Prompt Library/prompt-F-elaboration.md",
+    "80 System/Prompt Library/prompt-D-hub.md",
+    "80 System/Prompt Library/prompt-C-linking.md",
+    "80 System/Prompt Library/prompt-B-tagging.md",
+    "80 System/Prompt Library/prompt-A-atomicity.md",
+    "Competetive Research in Product.md",
+    "AGENTS.md",
+    "vault-scaffold/80 System/Decision Log.md",
+    "vault-scaffold/80 System/Master Tag List.md",
+    "vault-scaffold/README.md"
+  ]
+}
