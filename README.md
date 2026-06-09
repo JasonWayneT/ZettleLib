@@ -1,8 +1,51 @@
+---
+title: "ZettleLib"
+description: "A Zettelkasten prompt contract library and architecture reference — deterministic note processing that works identically from Gemma2 9B to Claude."
+author: "Jason Taylor"
+role: "Product Manager"
+status: "complete"
+ai_role: "skill code generation within spec; prompt contracts authored by Jason"
+tech_stack: ["Python", "Markdown", "YAML", "LanceDB", "Ollama"]
+pm_skills: ["prompt engineering", "architecture design", "model-agnostic system design", "constraint-based AI design", "information architecture"]
+keywords: ["Zettelkasten", "personal knowledge management", "prompt contracts", "Obsidian", "note-taking", "local LLM", "model-agnostic"]
+date_completed: "2026-04"
+---
+
 # ZettleLib
 
 > A Zettelkasten prompt contract library and architecture reference — terminal-driven note processing, serendipity, and Map of Content generation that works identically from Gemma2 9B to Claude.
 
 Originally built as a skill for [Xochitl](../Xochitl). The skill has since been ported to [Hermes](https://github.com/hermes-cli/hermes) as a plugin. This repo is the canonical home for the prompt contracts and vault architecture.
+
+---
+
+## What This Is
+
+ZettleLib started as a standalone app (server + Obsidian plugin). I rebuilt it as a **skill inside Xochitl** because the infrastructure was getting in the way of actually using the system.
+
+**What it does now:**
+- Runs inside Xochitl's terminal interface — no server, no plugin, no bat scripts
+- Points at any folder your Obsidian vault lives in
+- Processes permanent notes using a deterministic prompt contract system
+- Surfaces non-obvious connections between notes via vector embeddings
+- Generates Maps of Content on demand
+- Works with Gemma2 9B local models all the way to Claude cloud — same output format every time
+
+**My role:** Architecture design, prompt contract system design (`.txt` template + `.yaml` spec), parser design, fallback strategy, vault structure decisions, porting to Hermes.
+**AI's role:** Skill code generation within my spec. The prompt contracts themselves — the actual LLM instructions — are authored by Jason, not generated.
+
+**What it is not:**
+- A standalone app
+- A plugin
+- Something you install separately
+
+---
+
+## TL;DR
+
+You run Xochitl in your terminal. You say `let's work on zettles`. Xochitl scans your vault, processes your permanent notes with LLM-powered suggestions (tags, links, tension detection), and never blocks you. When you're done you say `done for today`. Your vault in Obsidian stays clean.
+
+The LLM never writes to your files directly. Every suggestion goes through a confirmation step. All file writes happen when you say `accept`. Switch from a 9B local model to Claude and the output format stays identical — the prompt contracts guarantee it.
 
 ---
 
@@ -16,30 +59,11 @@ Originally built as a skill for [Xochitl](../Xochitl). The skill has since been 
 
 ---
 
-## TL;DR
+## Results & Impact
 
-You run Xochitl in your terminal. You say `let's work on zettles`. Xochitl scans your vault, processes your permanent notes with LLM-powered suggestions (tags, links, tension detection), and never blocks you. When you're done you say `done for today`. Your vault in Obsidian stays clean.
-
-The LLM never writes to your files directly. Every suggestion goes through a confirmation step. All file writes happen when you say `accept`. Switch from a 9B local model to Claude and the output format stays identical — the prompt contracts guarantee it.
-
----
-
-## What This Is
-
-ZettleLib started as a standalone app (server + Obsidian plugin). It was rebuilt as a **skill inside Xochitl** because the infrastructure was getting in the way of actually using the system.
-
-**What it does now:**
-- Runs inside Xochitl's terminal interface — no server, no plugin, no bat scripts
-- Points at any folder your Obsidian vault lives in
-- Processes permanent notes using a deterministic prompt contract system
-- Surfaces non-obvious connections between notes via vector embeddings
-- Generates Maps of Content on demand
-- Works with Gemma2 9B local models all the way to Claude cloud — same output format every time
-
-**What it is not:**
-- A standalone app
-- A plugin
-- Something you install separately
+- **Model portability:** 9 prompt contracts work identically from Gemma2 9B (local) to Claude (cloud) — same output format, same parser, same fallback behavior.
+- **Ceiling test:** A clean note processes in 4 user exchanges or fewer. That's the design constraint and the runtime result.
+- **What I learned:** The parsing strategy matters more than the prompt wording. Three parsers (`VOCAB_MATCH`, `PREFIX_EXTRACT`, `PATTERN_EXTRACT`) handle all 9 operations. The real reliability work is in tolerance for noisy model output, not in making the prompts longer.
 
 ---
 
@@ -393,6 +417,22 @@ The vector DB (`src/memory.py` in Xochitl) handles all semantic retrieval. LLM c
 
 ---
 
+## Challenges & Decisions
+
+### Prompt contracts over freeform prompting
+**Problem:** Without output contracts, every LLM produces a different format for the same operation. A MOC from Gemma2 looked nothing like one from Claude. Parsers broke constantly.
+**Decision:** Formalize every LLM call as a `.txt` template + `.yaml` spec. Constrained vocabulary, single-turn, fixed parser per operation. The LLM fills one slot; code does everything else.
+**Tradeoff:** More upfront design work per operation. Each new feature requires a new contract, not just a new prompt.
+**Outcome:** 9 operations, all model-agnostic. The skill works identically regardless of which LLM is configured.
+
+### Separating the contract library from the skill code
+**Problem:** The prompt contracts and vault architecture are stable artifacts. The skill code changes as the host system (Xochitl, then Hermes) evolves. Coupling them means every skill refactor risks the contracts.
+**Decision:** Extract the prompt contract library into its own repo (ZettleLib). Skill code lives in the host system; contracts live here.
+**Tradeoff:** Two repos to maintain. Changes to the contract format require coordination across both.
+**Outcome:** Contracts evolved independently through one major refactor without breaking the skill. The separation was worth the coordination overhead.
+
+---
+
 ## This Repo vs The Xochitl Repo
 
 | | ZettleLib (this repo) | Xochitl |
@@ -408,6 +448,6 @@ When you change a contract template here, re-scaffold or manually copy the updat
 
 ## How This Was Built
 
-ZettleLib started as a standalone server + Obsidian plugin, then was rebuilt as a Xochitl skill because the infrastructure was getting in the way of actually using the system. The key architectural insight came from watching how different LLMs handled the same prompt: without strict output contracts, every model produced different structure. The prompt contract system — `.txt` template + `.yaml` spec, single-turn, constrained vocabulary — was designed specifically to make the skill model-agnostic.
+ZettleLib started as a standalone server + Obsidian plugin. I rebuilt it as a Xochitl skill because the infrastructure was getting in the way of actually using the system. The key architectural insight came from watching how different LLMs handled the same prompt: without strict output contracts, every model produced different structure. I designed the prompt contract system (`.txt` template + `.yaml` spec, single-turn, constrained vocabulary) specifically to make the skill model-agnostic.
 
-The skill was later extracted and ported to Hermes as a plugin, separating the prompt contract library (this repo) from the running skill code. That separation was the right call: contracts can evolve independently of the application.
+I later extracted the skill and ported it to Hermes as a plugin, separating the prompt contract library (this repo) from the running skill code. That separation was the right call: contracts can evolve independently of the application.
